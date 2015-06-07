@@ -1,4 +1,4 @@
-require_relative 'game'
+require_relative '../main/game'
 
 class Bullet
   attr_reader :x, :y

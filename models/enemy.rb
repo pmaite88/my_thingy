@@ -1,4 +1,4 @@
-require_relative 'game'
+require_relative '../main/game'
 
 class Enemy
   attr_reader :x, :y
@@ -7,7 +7,7 @@ class Enemy
   DIR        = File.dirname __FILE__
   HORDE_SIZE = 5
 
-  def initialize(enemy)
+  def initialize(window, enemy)
     @health = 2
     @enemy = enemy
 
@@ -18,7 +18,6 @@ class Enemy
     @vel_y = 1
 
     @attack_speed = 1
-
   end
 
   def draw

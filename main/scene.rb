@@ -1,10 +1,10 @@
 require 'rubygems'
 require 'gosu'
 
-require_relative 'fortification'
-require_relative 'building'
-require_relative 'enemy'
-require_relative 'game'
+require_relative '../models/fortification'
+require_relative '../models/building'
+require_relative '../models/enemy'
+require_relative './game'
 
 class GameWindow < Gosu::Window
   DIR = File.dirname __FILE__
@@ -20,7 +20,7 @@ class GameWindow < Gosu::Window
     @fortification = Fortification.new(self)
     @other_fortification = Fortification.new(self)
 
-    @enemy_spawn = Gosu::Image.new(self, "#{DIR}/media/enemy.png", false)
+    @enemy_spawn = Gosu::Image.new(self, "#{DIR}/../media/enemy.png", false)
 
     Game::BUILIDING_LIST << @building << @other_building << @yet_another_building
 
@@ -29,7 +29,7 @@ class GameWindow < Gosu::Window
 
   def update
     if rand(100) < 4 and Game::ENEMY_LIST.count < Enemy::HORDE_SIZE then
-      Game::ENEMY_LIST << Enemy.new(@enemy_spawn)
+      Game::ENEMY_LIST << Enemy.new(self, @enemy_spawn)
     end
 
     Game::FORTIFICATION_LIST.each { |fortification| fortification.defend }
@@ -50,11 +50,8 @@ class GameWindow < Gosu::Window
   end
 
   def draw
-
-   Game::FORTIFICATION_LIST.each { |fortification| fortification.draw }
-
+    Game::FORTIFICATION_LIST.each { |fortification| fortification.draw }
     Game::BUILIDING_LIST.each { |building| building.draw }
-
     Game::ENEMY_LIST.each { |enemy| enemy.draw }
   end
 

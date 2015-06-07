@@ -1,4 +1,4 @@
-require_relative 'game'
+require_relative '../main/game'
 require_relative 'bullet'
 
 class Fortification
@@ -17,8 +17,8 @@ class Fortification
     @target = nil
     @shot_bullet = nil
 
-    @fortification = Gosu::Image.new(window, "#{DIR}/media/fortification.png", false)
-    @bullet = Gosu::Image.new(window, "#{DIR}/media/bullet.png", false)
+    @fortification = Gosu::Image.new(window, "#{DIR}/../media/fortification.png", false)
+    @bullet = Gosu::Image.new(window, "#{DIR}/../media/bullet.png", false)
   end
 
   def defend
@@ -36,8 +36,6 @@ class Fortification
         @target = nil if @target.health <= 0
       end
     end
-
-
   end
 
   def draw
