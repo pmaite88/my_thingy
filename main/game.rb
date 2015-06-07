@@ -6,6 +6,7 @@ module Game
   BUILIDING_LIST = []
   ENEMY_LIST = []
   FORTIFICATION_LIST = []
+  FENCE_LIST = []
 
   def self.closest_target(origin, possible_targets)
     min_distance = 0

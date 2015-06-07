@@ -3,7 +3,7 @@ require_relative '../main/game'
 class Bullet
   attr_reader :x, :y
 
-  DIR        = File.dirname __FILE__
+  DIR = File.dirname __FILE__
 
   def initialize(parent, target)
     @parent = parent

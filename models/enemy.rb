@@ -11,8 +11,10 @@ class Enemy
     @health = 2
     @enemy = enemy
 
-    @x = rand * 640 # - rand * 600
-    @y = rand * 480 # + rand * 600
+    puts [-1, 1].sample
+
+    @x = (window.width / 2) + [-1, 1].sample * rand * 640
+    @y = (window.height / 2) + [-1, 1].sample * rand * 480
 
     @vel_x = 1
     @vel_y = 1

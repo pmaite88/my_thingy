@@ -4,10 +4,16 @@ require 'gosu'
 require_relative '../models/fortification'
 require_relative '../models/building'
 require_relative '../models/enemy'
+require_relative '../models/fence'
 require_relative './game'
 
-class GameWindow < Gosu::Window
+class Scene < Gosu::Window
   DIR = File.dirname __FILE__
+
+
+  def needs_cursor?
+    true
+  end
 
   def initialize
     super(Game::MAP_X, Game::MAP_Y, false)
@@ -15,16 +21,16 @@ class GameWindow < Gosu::Window
 
     @building = Building.new(self)
     @other_building = Building.new(self)
-    @yet_another_building = Building.new(self)
+    # @yet_another_building = Building.new(self)
 
     @fortification = Fortification.new(self)
     @other_fortification = Fortification.new(self)
 
     @enemy_spawn = Gosu::Image.new(self, "#{DIR}/../media/enemy.png", false)
 
-    Game::BUILIDING_LIST << @building << @other_building << @yet_another_building
-
+    Game::BUILIDING_LIST << @building << @other_building # << @yet_another_building
     Game::FORTIFICATION_LIST << @fortification << @other_fortification
+
   end
 
   def update
@@ -59,8 +65,14 @@ class GameWindow < Gosu::Window
     if id == Gosu::KbEscape
       close
     end
+
+    if id == Gosu::MsLeft
+      fence = Fence.new(self)
+
+      Game::BUILIDING_LIST << fence
+    end
   end
 end
 
-window = GameWindow.new
+window = Scene.new
 window.show
