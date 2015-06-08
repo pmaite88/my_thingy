@@ -16,10 +16,12 @@ class Bullet
   end
 
   def move
-    angle = Gosu::angle(x, y, @target.x, @target.y)
+    unless Game.paused
+      angle = Gosu::angle(x, y, @target.x, @target.y)
 
-    @x += Gosu::offset_x(angle, @vel)
-    @y += Gosu::offset_y(angle, @vel)
+      @x += Gosu::offset_x(angle, @vel)
+      @y += Gosu::offset_y(angle, @vel)
+    end
   end
 
   def draw

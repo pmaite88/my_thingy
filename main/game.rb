@@ -7,21 +7,36 @@ module Game
   ENEMY_LIST = []
   FORTIFICATION_LIST = []
   FENCE_LIST = []
+  MENU = []
+  BUTTONS = []
 
-  def self.closest_target(origin, possible_targets)
-    min_distance = 0
-    first_time = true
-    target = nil
+  class << self
+    attr_accessor :paused
 
-    possible_targets.each do |structure|
-      distance = Gosu::distance(origin.x, origin.y, structure.x, structure.y)
+    def closest_target(origin, possible_targets)
+      min_distance = 0
+      first_time = true
+      target = nil
 
-      if first_time || min_distance > distance
-        min_distance = distance
-        target = structure
-        first_time = false
+      possible_targets.each do |structure|
+        distance = Gosu::distance(origin.x, origin.y, structure.x, structure.y)
+
+        if first_time || min_distance > distance
+          min_distance = distance
+          target = structure
+          first_time = false
+        end
       end
+
+      target
     end
-    target
+
+    def pause
+      self.paused = true
+    end
+
+    def continue
+      self.paused = false
+    end
   end
 end

@@ -11,7 +11,7 @@ class Building
     @health = 500
 	  @time_to_build = 5000
 
-    @x = rand * 300
+    @x = rand * 300 + 200 # 200 por el menu
     @y = rand * 200
 
     @building = Gosu::Image.new(window, "#{DIR}/../media/building.png", false)
